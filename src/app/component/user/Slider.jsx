@@ -1,8 +1,5 @@
-"use client"
-
-import { useEffect, useState } from "react";
-import Image from "next/image";  // Import Image từ next/image
-
+import { useEffect, useState, useCallback } from 'react';
+import Image from 'next/image';
 const ImageSlider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -13,11 +10,11 @@ const ImageSlider = () => {
     'https://www.asus.com/WebsitesBanner/VN/banners/z5embk8btewj7wje/z5embk8btewj7wje-0_0_desktop_0_1X.jpg',
   ];
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     setCurrentIndex((prevIndex) => 
       prevIndex === images.length - 1 ? 0 : prevIndex + 1
     );
-  };
+  }, [images.length]);  // Đảm bảo `images.length` là dependency
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) => 
@@ -31,8 +28,7 @@ const ImageSlider = () => {
     }, 5000);
 
     return () => clearInterval(timer);
-  }, 
-  []);
+  }, [nextSlide]);  // nextSlide đã được memoize và có thể sử dụng trong dependency array
 
   return (
     <div className="relative w-full h-full overflow-hidden">
@@ -46,8 +42,8 @@ const ImageSlider = () => {
             <Image
               src={image}
               alt={`Slide ${index + 1}`}
-              width={1920} // Cung cấp width cho ảnh
-              height={1080} // Cung cấp height cho ảnh
+              width={1920}
+              height={1080}
               className="w-full h-full object-cover"
             />
           </div>
