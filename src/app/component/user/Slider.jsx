@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react";
-
+import Image from "next/image";  // Import Image từ next/image
 
 const ImageSlider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -31,7 +31,8 @@ const ImageSlider = () => {
     }, 5000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, 
+  []);
 
   return (
     <div className="relative w-full h-full overflow-hidden">
@@ -41,12 +42,15 @@ const ImageSlider = () => {
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {images.map((image, index) => (
-          <img
-            key={index}
-            src={image}
-            alt={`Slide ${index + 1}`}
-            className="w-full h-full object-cover flex-shrink-0"
-          />
+          <div key={index} className="w-full h-full flex-shrink-0">
+            <Image
+              src={image}
+              alt={`Slide ${index + 1}`}
+              width={1920} // Cung cấp width cho ảnh
+              height={1080} // Cung cấp height cho ảnh
+              className="w-full h-full object-cover"
+            />
+          </div>
         ))}
       </div>
 

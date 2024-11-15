@@ -1,7 +1,8 @@
-"use client"
+"use client";
 
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';  // Import Image từ next/image
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -63,9 +64,11 @@ const ProductList = () => {
             </div>
 
             <div className="w-5/6 h-[260px] p-4 overflow-hidden mx-auto aspect-w-16 aspect-h-8">
-              <img
-                src={product.image}
+              <Image
+                src={product.image}  // Sử dụng Image thay cho img
                 alt={product.title}
+                width={500}  // Cung cấp width cho ảnh
+                height={500}  // Cung cấp height cho ảnh
                 className="h-full w-full object-contain"
               />
             </div>
@@ -81,9 +84,7 @@ const ProductList = () => {
                 {[...Array(5)].map((_, index) => (
                   <svg
                     key={index}
-                    className={`w-4 ${
-                      index < Math.round(product.rating.rate) ? 'fill-[#facc15]' : 'fill-[#CED5D8]'
-                    }`}
+                    className={`w-4 ${index < Math.round(product.rating.rate) ? 'fill-[#facc15]' : 'fill-[#CED5D8]'}`}
                     viewBox="0 0 14 13"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"

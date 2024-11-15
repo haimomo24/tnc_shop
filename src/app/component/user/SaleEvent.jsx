@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image';  // Import Image từ next/image
 
 const SaleEvent = () => {
   return (
@@ -12,7 +13,7 @@ const SaleEvent = () => {
                   className="flex-shrink-0"  
               >  
                   <div className="bg-white shadow-lg rounded-md overflow-hidden transition-transform hover:scale-105">  
-                      <img   
+                      <Image   
                           src={  
                               item === 1  
                                   ? "https://www.asus.com/media/Odin/Websites/vn/SiteSetting/20230710031437.jpg?webp"  
@@ -21,6 +22,8 @@ const SaleEvent = () => {
                                   : "https://www.asus.com/media/Odin/Websites/vn/SiteSetting/20231103064144.jpg?webp"  
                           }   
                           alt={`Image ${item}`}   
+                          width={500}  // Cung cấp width cho ảnh
+                          height={256}  // Cung cấp height cho ảnh
                           className="w-full h-64 object-cover"   
                       />  
                       <div className="p-4">  

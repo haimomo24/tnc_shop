@@ -3,7 +3,7 @@ import Link from 'next/link'  // Import Link từ next/link
 
 const NavBav = () => {
   return (
-    <nav className="bg-white shadow bg-gray-100">  
+    <nav className=" shadow bg-gray-100">  
       <div className="container mx-auto flex items-center justify-between p-4">  
         {/* Logo */}  
         <div className="text-lg font-bold text-gray-800">ASUS</div>  
